@@ -1,0 +1,61 @@
+/* 
+  Localizable.strings
+  MoviesAPIs
+
+  Created by mac on 14/5/25.
+  
+*/
+
+/* Categories */
+"popular" = "Popular";
+"topRated" = "Top Rated";
+"upcoming" = "Upcoming";
+"nowPlaying" = "Now Playing";
+"trending" = "Trending";
+
+/* TV Categories */
+"popularTV" = "Popular";
+"topRatedTV" = "Top Rated";
+"onTheAir" = "On The Air";
+"airingToday" = "Airing Today";
+
+/* Common */
+"common.retry" = "Please retry again";
+"common.no_internet" = "Please check your network settings and try again.";
+"common.done" = "Done";
+
+/* Movies */
+"movies.title" = "Movies";
+"movies.release" = "Release year: ";
+"movies.placeholder" = "Search Movies...";
+"movies.empty_prompt" = "No movies found";
+
+/* TV */
+"tv.title" = "TV Shows";
+"tv.empty_prompt" = "No TV show found";
+"tv.release" = "Airing date: ";
+"tv.networks" = "Networks";
+"tv.seasons.number" = "Number of seasons: ";
+"tv.type" = "Type: ";
+"tv.language" = "Language: ";
+"tv.created.by" = "Created by: ";
+"tv.no_overview" = "No overview available";
+"tv.productions" = "Production Companies";
+
+/* Movie */
+"movie.overview" = "Overview";
+"movie.website" = "Official Website";
+"movie.visit" = "Visit Site";
+"movie.trailers" = "Trailers";
+"movie.no.trailers" = "No trailers available";
+
+/* Errors */
+"error.invalid_url" = "Invalid username";
+"error.invalid_response" = "Invalid server response";
+"error.not_found" = "User not found";
+"error.server_error" = "Server error: %@";
+"error.decoding" = "Error processing data";
+"error.rate_limit" = "API rate limit exceeded";
+"error.no_internet" = "No internet connection";
+"error.unknown" = "Unknown error occurred";
+"error.no_data" = "No data found";

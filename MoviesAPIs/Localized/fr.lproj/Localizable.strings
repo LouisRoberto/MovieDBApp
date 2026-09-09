@@ -1,0 +1,61 @@
+/* 
+  Localizable.strings
+  MoviesAPIs
+
+  Created by mac on 14/5/25.
+  
+*/
+
+/* Categories */
+"popular" = "Populaire";
+"topRated" = "Mieux Notés";
+"upcoming" = "À Venir";
+"nowPlaying" = "À L’affiche";
+"trending" = "Tendance";
+
+/* TV Categories */
+"popularTV" = "Populaire";
+"topRatedTV" = "Mieux Notés";
+"onTheAir" = "En cours de diffusion";
+"airingToday" = "Diffusé aujourd'hui";
+
+/* Common */
+"common.retry" = "Merci de réessayer encore une fois";
+"common.no_internet" = "Veuillez vérifier vos paramètres réseau et réessayer.";
+"common.done" = "Terminé";
+
+/* Movies */
+"movies.title" = "Films";
+"movies.release" = "Année de sortie: ";
+"movies.placeholder" = "Recherchez les films...";
+"movies.empty_prompt" = "Aucun film trouvé";
+
+/* TV */
+"tv.title" = "Émissions";
+"tv.empty_prompt" = "Aucune émission TV trouvée";
+"tv.release" = "Date de diffusion: ";
+"tv.networks" = "Chaînes";
+"tv.seasons.number" = "Nombre de saisons: ";
+"tv.type" = "Type: ";
+"tv.language" = "Langue: ";
+"tv.created.by" = "Crée par: ";
+"tv.no_overview" = "Pas d'Aperçue disponible";
+"tv.productions" = "Sociétés de production";
+
+/* Movie */
+"movie.overview" = "Aperçue";
+"movie.website" = "Siteweb official";
+"movie.visit" = "Visitez le Site";
+"movie.trailers" = "Bandes-annonces";
+"movie.no.trailers" = "Aucune bande-annonce disponible";
+
+/* Errors */
+"error.invalid_url" = "Nom de film invalide";
+"error.invalid_response" = "Réponse du serveur invalide";
+"error.not_found" = "Film non trouvé";
+"error.server_error" = "Erreur serveur : %@";
+"error.decoding" = "Erreur de traitement des données";
+"error.rate_limit" = "Limite d'API atteinte";
+"error.no_internet" = "Pas de connexion Internet";
+"error.unknown" = "Erreur inconnue survenue";
+"error.no_data" = "Donnèes non trouvées";

@@ -1,0 +1,61 @@
+/* 
+  Localizable.strings
+  MoviesAPIs
+
+  Created by mac on 14/5/25.
+  
+*/
+
+/* Categories */
+"popular" = "Popolari";
+"topRated" = "Più Votati";
+"upcoming" = "In Arrivo";
+"nowPlaying" = "Ora Al Cinema";
+"trending" = "Di Tendenza";
+
+/* TV Categories */
+"popularTV" = "Popolari";
+"topRatedTV" = "Più Votati";
+"onTheAir" = "In Onda";
+"airingToday" = "In Onda Oggi";
+
+/* Common */
+"common.retry" = "Riprova per favore";
+"common.no_internet" = "Controlla la connessione e riprova.";
+"common.done" = "Fatto";
+
+/* Movies */
+"movies.title" = "Film";
+"movies.release" = "Anno di uscita: ";
+"movies.placeholder" = "Cerca film...";
+"movies.empty_prompt" = "Nessun film trovato";
+
+/* TV */
+"tv.title" = "Serie";
+"tv.empty_prompt" = "Nessuna serie trovata";
+"tv.release" = "Data di trasmissione: ";
+"tv.networks" = "Reti";
+"tv.seasons.number" = "Numero di stagioni: ";
+"tv.type" = "Tipo: ";
+"tv.language" = "Lingua: ";
+"tv.created.by" = "Creato da: ";
+"tv.no_overview" = "Nessuna descrizione disponibile";
+"tv.productions" = "Società di produzione";
+
+/* Movie */
+"movie.overview" = "Panoramica";
+"movie.website" = "Sito ufficiale";
+"movie.visit" = "Visita il sito";
+"movie.trailers" = "Trailer";
+"movie.no.trailers" = "Nessun trailer disponibile";
+
+/* Errors */
+"error.invalid_url" = "Nome utente non valido";
+"error.invalid_response" = "Risposta del server non valida";
+"error.not_found" = "Utente non trovato";
+"error.server_error" = "Errore del server: %@";
+"error.decoding" = "Errore nell'elaborazione dei dati";
+"error.rate_limit" = "Limite di richieste superato";
+"error.no_internet" = "Nessuna connessione Internet";
+"error.unknown" = "Errore sconosciuto";
+"error.no_data" = "Nessun dato trovato";

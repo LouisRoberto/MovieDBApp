@@ -1,0 +1,61 @@
+/* 
+  Localizable.strings
+  MoviesAPIs
+
+  Created by mac on 14/5/25.
+  
+*/
+
+/* Categories */
+"popular" = "Популярное";
+"topRated" = "С высоким рейтингом";
+"upcoming" = "Скоро выйдут";
+"nowPlaying" = "Сейчас в прокате";
+"trending" = "В тренде";
+
+/* TV Categories */
+"popularTV" = "Популярное";
+"topRatedTV" = "С высоким рейтингом";
+"onTheAir" = "В эфире";
+"airingToday" = "Сегодня в эфире";
+
+/* Common */
+"common.retry" = "Пожалуйста, попробуйте снова";
+"common.no_internet" = "Проверьте подключение к сети и попробуйте снова.";
+"common.done" = "Готово";
+
+/* Movies */
+"movies.title" = "Фильмы";
+"movies.release" = "Год выхода: ";
+"movies.placeholder" = "Поиск фильмов...";
+"movies.empty_prompt" = "Фильмы не найдены";
+
+/* TV */
+"tv.title" = "Сериалы";
+"tv.empty_prompt" = "Сериалы не найдены";
+"tv.release" = "Дата выхода: ";
+"tv.networks" = "Телеканалы";
+"tv.seasons.number" = "Количество сезонов: ";
+"tv.type" = "Тип: ";
+"tv.language" = "Язык: ";
+"tv.created.by" = "Создатели: ";
+"tv.no_overview" = "Описание отсутствует";
+"tv.productions" = "Производственные компании";
+
+/* Movie */
+"movie.overview" = "Описание";
+"movie.website" = "Официальный сайт";
+"movie.visit" = "Перейти на сайт";
+"movie.trailers" = "Трейлеры";
+"movie.no.trailers" = "Трейлеры отсутствуют";
+
+/* Errors */
+"error.invalid_url" = "Неверное имя пользователя";
+"error.invalid_response" = "Неверный ответ сервера";
+"error.not_found" = "Пользователь не найде";
+"error.server_error" = "Ошибка сервера: %@";
+"error.decoding" = "Ошибка обработки данных";
+"error.rate_limit" = "Превышен лимит запросов API";
+"error.no_internet" = "Нет подключения к интернету";
+"error.unknown" = "Произошла неизвестная ошибка";
+"error.no_data" = "Данные не найдены";
