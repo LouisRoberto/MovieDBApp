@@ -12,12 +12,14 @@
 "upcoming" = "Upcoming";
 "nowPlaying" = "Now Playing";
 "trending" = "Trending";
+"discover" = "Discover";
 
 /* TV Categories */
 "popularTV" = "Popular";
 "topRatedTV" = "Top Rated";
 "onTheAir" = "On The Air";
 "airingToday" = "Airing Today";
+"discoverTV" = "Discover TV";
 
 /* Common */
 "common.retry" = "Please retry again";

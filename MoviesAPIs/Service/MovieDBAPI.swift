@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 struct MovieDBAPI {
     
     static let apiKey = "195c892be42af154ce7ca9024aaa450b"
@@ -25,11 +23,16 @@ struct MovieDBAPI {
         URLQueryItem(name: "region", value: LanguageManager.shared.regionCode)
     }
     
+    private static var adultQueryItem: URLQueryItem {
+        URLQueryItem(name: "include_adult", value: "true")
+    }
+    
     private static var defaultQueryItems: [URLQueryItem] {
         [
             URLQueryItem(name: "api_key", value: apiKey),
             languageQueryItem,
-            regionQueryItem
+            regionQueryItem,
+            adultQueryItem
         ]
     }
     

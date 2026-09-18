@@ -12,6 +12,7 @@ enum TVCategory: String, Category {
     case airingToday
     case onTheAir
     case topRatedTV
+    case discoverTV
     
     var endpoint: String {
         switch self {
@@ -19,6 +20,7 @@ enum TVCategory: String, Category {
         case .onTheAir: return "/tv/on_the_air"
         case .topRatedTV: return "/tv/top_rated"
         case .popularTV: return "/tv/popular"
+        case .discoverTV: return "/discover/tv"
         }
     }
 }

@@ -14,7 +14,7 @@ class TvShowListViewModel: ObservableObject {
     @Published var error: NetworkError?
     
     @Published var selectedCategory: TVCategory = .airingToday
-    @Published var categories: [TVCategory] = [.airingToday, .popularTV, .onTheAir, .topRatedTV]
+    @Published var categories: [TVCategory] = [.airingToday, .popularTV, .onTheAir, .topRatedTV, .discoverTV]
     
     private var cancellables = Set<AnyCancellable>()
     private let networkService: NetworkServiceProtocol

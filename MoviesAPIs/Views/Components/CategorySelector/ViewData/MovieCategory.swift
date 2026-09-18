@@ -11,6 +11,7 @@ enum MovieCategory: String, Category {
     case topRated
     case upcoming
     case trending
+    case discover
     
     var endpoint: String {
         switch self {
@@ -19,6 +20,7 @@ enum MovieCategory: String, Category {
         case .topRated: return "/movie/top_rated"
         case .upcoming: return "/movie/upcoming"
         case .trending: return "/trending/movie/day"
+        case .discover: return "/discover/movie"
         }
     }
 }

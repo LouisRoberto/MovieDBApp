@@ -12,12 +12,14 @@
 "upcoming" = "À Venir";
 "nowPlaying" = "À L’affiche";
 "trending" = "Tendance";
+"discover" = "Découvrir";
 
 /* TV Categories */
 "popularTV" = "Populaire";
 "topRatedTV" = "Mieux Notés";
 "onTheAir" = "En cours de diffusion";
 "airingToday" = "Diffusé aujourd'hui";
+"discoverTV" = "Découvrir";
 
 /* Common */
 "common.retry" = "Merci de réessayer encore une fois";

@@ -14,7 +14,7 @@ class MovieListViewModel: ObservableObject {
     @Published var error: NetworkError?
     
     @Published var selectedCategory: MovieCategory = .popular
-    @Published var categories: [MovieCategory] = [.popular, .nowPlaying, .topRated, .upcoming, .trending]
+    @Published var categories: [MovieCategory] = [.popular, .nowPlaying, .topRated, .upcoming, .trending, .discover]
     
     private var cancellables = Set<AnyCancellable>()
     private let networkService: NetworkServiceProtocol
