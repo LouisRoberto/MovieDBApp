@@ -118,7 +118,8 @@ struct SearchView: View {
             noResultsView
         } else {
             // Results grid
-            resultsGrid
+            iPhoneLayout
+            // resultsGrid
         }
     }
     
@@ -231,6 +232,18 @@ struct SearchView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
+    // MARK: - iPhone Layout
+    
+    private var iPhoneLayout: some View {
+        List(viewModel.results) { result in
+            NavigationLink {
+                MovieDetailByIdView(movieId: result.id)
+            } label: {
+                SearchResultRow(result: result)
+            }
+        }
+    }
+    
     // MARK: - Results Grid
     
     private var resultsGrid: some View {
@@ -242,9 +255,9 @@ struct SearchView: View {
                         SearchResultCard(result: result)
                     }
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 8)
-                .padding(.bottom, 20)
+                          .padding(.horizontal, 16)
+                          .padding(.top, 8)
+                          .padding(.bottom, 20)
             }
         }
     }
@@ -252,9 +265,9 @@ struct SearchView: View {
     private func makeColumns(for width: CGFloat) -> [GridItem] {
         let minimumCardWidth: CGFloat = 180
         let spacing: CGFloat = 24
-
+        
         let availableWidth = width - 48
-
+        
         let numberOfColumns = max(
             1,
             Int(
@@ -262,7 +275,7 @@ struct SearchView: View {
                 (minimumCardWidth + spacing)
             )
         )
-
+        
         return Array(
             repeating: GridItem(
                 .flexible(),
@@ -285,14 +298,13 @@ struct FilterChip: View {
         Button(action: action) {
             HStack(spacing: 6) {
                 Image(systemName: icon)
-                    .font(.caption)
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(isSelected ? .black : .primary)
                 
                 Text(title)
-                    .font(.subheadline)
-                    .fontWeight(.medium)
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(isSelected ? .black : .primary)
             }
-            .font(.system(size: 16, weight: .medium))
-            .foregroundColor(isSelected ? .black : .primary)
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
             .background(
@@ -335,6 +347,69 @@ struct RecentSearchRow: View {
         .onTapGesture(perform: onTap)
     }
 }
+
+struct SearchResultRow: View {
+    let result: SearchResult
+    
+    var body: some View {
+        HStack {
+            if let url = result.imageURL {
+                KFImage(url)
+                    .resizable()
+                    .placeholder {
+                        ProgressView()
+                    }
+                    .frame(width: 120, height: 180)
+                    .cornerRadius(4)
+            } else {
+                Image(systemName: result.mediaType == .tv ? "tv" : "film")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(.gray)
+                    .background(Color(.secondarySystemBackground))
+                    .frame(width: 120, height: 180)
+                    .cornerRadius(4)
+            }
+            
+            VStack(alignment: .leading) {
+                Text(result.displayTitle)
+                    .font(.title2)
+                    .bold()
+                if let year = result.releaseYear {
+                    HStack {
+                        Text("movies.release".localized())
+                            .font(.subheadline)
+                        Text(year)
+                            .font(.subheadline)
+                    }
+                }
+                if let rating = result.voteAverage, rating > 0 {
+                    HStack {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                        Text(String(format: "%.1f", result.voteAverage ?? 0))
+                    }
+                }
+                
+                // Media Type Badge
+                if let mediaType = result.mediaType {
+                    Text(mediaType.displayName)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(
+                            Capsule()
+                                .fill(result.mediaType == .movie ? Color.blue : Color.purple)
+                        )
+                        .padding(8)
+                }
+            }
+        }
+    }
+}
+
 
 struct SearchResultCard: View {
     let result: SearchResult
