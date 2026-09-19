@@ -14,6 +14,8 @@ protocol APIClientProtocol {
     
     func fetchTvShowList(category: TVCategory) async throws -> TvShowListResponse
     func fetchTvShowDetail(tvShowId: Int) async throws -> TvShowDetail
+    
+    func search(query: String, filter: SearchFilter, page: Int) async throws -> SearchResponse
 }
 
 class APIClient: APIClientProtocol {
@@ -67,5 +69,21 @@ class APIClient: APIClientProtocol {
         let url = MovieDBAPI.buildURL(url: urlString)!
         let (data, _) = try await session.data(from: url)
         return try JSONDecoder().decode(TvShowDetail.self, from: data)
+    }
+    
+    func search(query: String, filter: SearchFilter = .all, page: Int = 1) async throws -> SearchResponse {
+        guard !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+            return SearchResponse(page: 1, results: [], totalPages: 0, totalResults: 0)
+        }
+        
+        let searchQueryItems =  [
+            URLQueryItem(name: "query", value: query),
+            URLQueryItem(name: "page", value: "\(page)"),
+        ]
+        
+        let urlString = "\(MovieDBAPI.BASE_URL)\(filter.endpoint)"
+        let url = MovieDBAPI.buildURL(url: urlString, additionalQueryItems: searchQueryItems)!
+        let (data, _) = try await session.data(from: url)
+        return try JSONDecoder().decode(SearchResponse.self, from: data)
     }
 }

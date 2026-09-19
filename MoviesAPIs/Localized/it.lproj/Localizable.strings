@@ -59,3 +59,11 @@
 "error.no_internet" = "Nessuna connessione Internet";
 "error.unknown" = "Errore sconosciuto";
 "error.no_data" = "Nessun dato trovato";
+
+/* Search */
+"search.title" = "Search";
+"search.holder.msg" = "Search movies, TV shows...";
+"search.header" = "Search for Movies & TV Shows";
+"search.desc" = "Find your favorite movies and TV shows";
+"search.empty.prompt" = "No results found";
+"search.retry.prompt" = "Try searching with different keywords";

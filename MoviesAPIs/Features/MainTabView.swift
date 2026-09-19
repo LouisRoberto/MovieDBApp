@@ -34,6 +34,12 @@ struct MainTabView: View {
                         Label("tv.title".localized(), systemImage: "tv")
                     }
                     .tag(1)
+                
+                SearchView()
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+                    .tag(2)
             }
             .accentColor(.blue)
         }
@@ -55,6 +61,13 @@ struct MainTabView: View {
                     selectedTab = 1
                 }
                 .listRowInsets(EdgeInsets())
+            
+            Label("search.title".localized(), systemImage: "magnifyingglass")
+                .tag(1)
+                .onTapGesture {
+                    selectedTab = 2
+                }
+                .listRowInsets(EdgeInsets())
         }
         .listStyle(.sidebar)
     }
@@ -63,8 +76,10 @@ struct MainTabView: View {
     private var detailView: some View {
         if selectedTab == 0 {
             MovieListView()
-        } else {
+        } else if selectedTab == 1 {
             TVShowListView()
+        } else {
+            SearchView()
         }
     }
 }
