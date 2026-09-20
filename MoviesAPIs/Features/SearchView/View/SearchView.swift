@@ -15,7 +15,7 @@ struct SearchView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 // Search Bar
                 searchBar
@@ -26,15 +26,7 @@ struct SearchView: View {
                 // Content
                 content
             }
-            .onTapGesture {
-                hideKeyboard()
-            }
             .navigationTitle("search.title".localized())
-        }
-        .navigationViewStyle(.stack)
-        .onAppear {
-            // Optional: auto focus on appear
-            // isSearchFocused = true
         }
     }
     
@@ -55,6 +47,7 @@ struct SearchView: View {
                         await viewModel.performSearch(query: viewModel.query)
                     }
                 }
+            
             
             if !viewModel.query.isEmpty {
                 Button(action: {
@@ -85,7 +78,7 @@ struct SearchView: View {
             HStack(spacing: 8) {
                 ForEach(SearchFilter.allCases, id: \.self) { filter in
                     FilterChip(
-                        title: filter.rawValue,
+                        title: filter.localizedTitle,
                         icon: filter.icon,
                         isSelected: viewModel.filter == filter
                     ) {
@@ -97,6 +90,10 @@ struct SearchView: View {
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
+        }
+        .onTapGesture {
+            isSearchFocused = false
+            hideKeyboard()
         }
     }
     
@@ -237,7 +234,11 @@ struct SearchView: View {
     private var iPhoneLayout: some View {
         List(viewModel.results) { result in
             NavigationLink {
-                MovieDetailByIdView(movieId: result.id)
+                if result.mediaType ==  .movie || viewModel.filter == .movies {
+                    MovieDetailView(movieId: result.id, movieTiltle: result.title ?? "")
+               } else if result.mediaType ==  .tv  || viewModel.filter == .tvShows {
+                   TvShowDetailView(tvShowId: result.id, tvShowName: result.name ?? "")
+               }
             } label: {
                 SearchResultRow(result: result)
             }

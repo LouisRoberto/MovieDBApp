@@ -9,7 +9,10 @@ import SwiftUI
 import Kingfisher
 
 struct MovieDetailView: View {
-    let movie: Movie
+    
+    let movieId: Int
+    let movieTiltle: String
+    
     @StateObject private var viewModel = MovieDetailViewModel()
     @State private var showVideoPlayer = false
     
@@ -23,16 +26,16 @@ struct MovieDetailView: View {
                 movieContent(for: movieDetail)
             }
         }
-        .navigationTitle(movie.title)
+        .navigationTitle(movieTiltle)
         .navigationBarTitleDisplayMode(.inline)
         .frame(maxWidth: .infinity)
         .refreshable {
             Task {
-                await viewModel.fetchMovieInfos(movieId: movie.id)
+                await viewModel.fetchMovieInfos(movieId: movieId)
             }
         }
         .task {
-            await viewModel.fetchMovieInfos(movieId: movie.id)
+            await viewModel.fetchMovieInfos(movieId: movieId)
         }
     }
     

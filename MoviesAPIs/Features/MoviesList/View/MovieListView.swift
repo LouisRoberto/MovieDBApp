@@ -45,7 +45,7 @@ struct MovieListView: View {
         .navigationTitle("movies.title".localized())
         .sheet(item: $selectedMovie) { movie in
             NavigationStack {
-                MovieDetailsIpad(movie: movie)
+                MovieDetailsIpad(movieId: movie.id, movieTiltle: movie.title)
                     .navigationTitle(movie.title)
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
@@ -108,7 +108,7 @@ struct MovieListView: View {
     private var iPhoneLayout: some View {
         List(viewModel.results) { movie in
             NavigationLink {
-                MovieDetailView(movie: movie)
+                MovieDetailView(movieId: movie.id, movieTiltle: movie.title)
             } label: {
                 MovieRow(movie: movie)
             }

@@ -106,7 +106,7 @@ struct TVShowListView: View {
     private var iPhoneLayout: some View {
         List(viewModel.results) { tvShow in
             NavigationLink {
-                TvShowDetailView(tvShow: tvShow)
+                TvShowDetailView(tvShowId: tvShow.id, tvShowName: tvShow.name)
             } label: {
                 TVShowRow(tvShow: tvShow)
             }

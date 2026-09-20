@@ -9,7 +9,8 @@ import SwiftUI
 import Kingfisher
 
 struct TvShowDetailView: View {
-    let tvShow: TvShow
+    let tvShowId: Int
+    let tvShowName: String
     @StateObject private var viewModel = TvShowDetailViewModel()
     
     var body: some View {
@@ -22,15 +23,15 @@ struct TvShowDetailView: View {
                 tvShowContent(for: tvShowDetail)
             }
         }
-        .navigationTitle(tvShow.name)
+        .navigationTitle(tvShowName)
         .navigationBarTitleDisplayMode(.inline)
         .frame(maxWidth: .infinity)
         .refreshable {
-            viewModel.fetchTVShowDetails(tvShowId: tvShow.id)
+            viewModel.fetchTVShowDetails(tvShowId: tvShowId)
         }
         .onAppear {
             if viewModel.tvShowDetail == nil {
-                viewModel.fetchTVShowDetails(tvShowId: tvShow.id)
+                viewModel.fetchTVShowDetails(tvShowId: tvShowId)
             }
         }
     }
