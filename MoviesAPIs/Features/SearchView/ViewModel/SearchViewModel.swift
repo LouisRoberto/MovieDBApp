@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+@MainActor
 class SearchViewModel: ObservableObject {
     @Published var query: String = ""
     @Published var filter: SearchFilter = .all
@@ -65,6 +66,7 @@ class SearchViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func updateFilter(_ newFilter: SearchFilter) async {
         filter = newFilter
         if !query.isEmpty {
