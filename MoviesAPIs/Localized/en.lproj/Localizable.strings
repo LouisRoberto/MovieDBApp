@@ -69,3 +69,9 @@
 "search.desc" = "Find your favorite movies and TV shows";
 "search.empty.prompt" = "No results found";
 "search.retry.prompt" = "Try searching with different keywords";
+"search.filter.all" = "All";
+"search.filter.movie" = "Movies";
+"search.filter.tv" = "TV Shows";
+"search.media.type.movie" = "Movie";
+"search.media.type.tv" = "TV Show";
+"search.media.type.person" = "Person";

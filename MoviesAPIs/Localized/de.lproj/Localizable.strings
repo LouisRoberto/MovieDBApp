@@ -61,9 +61,15 @@
 "error.no_data" = "Keine Daten gefunden";
 
 /* Search */
-"search.title" = "Search";
-"search.holder.msg" = "Search movies, TV shows...";
-"search.header" = "Search for Movies & TV Shows";
-"search.desc" = "Find your favorite movies and TV shows";
-"search.empty.prompt" = "No results found";
-"search.retry.prompt" = "Try searching with different keywords";
+"search.title" = "Suchen";
+"search.holder.msg" = "Filme, TV-Serien suchen...";
+"search.header" = "Nach Filmen und TV-Serien suchen";
+"search.desc" = "Finde deine Lieblingsfilme und TV-Serien";
+"search.empty.prompt" = "Keine Ergebnisse gefunden";
+"search.retry.prompt" = "Versuche es mit anderen Suchbegriffen";
+"search.filter.all" = "Alle";
+"search.filter.movie" = "Filme";
+"search.filter.tv" = "TV-Serien";
+"search.media.type.movie" = "Film";
+"search.media.type.tv" = "TV-Serie";
+"search.media.type.person" = "Person";

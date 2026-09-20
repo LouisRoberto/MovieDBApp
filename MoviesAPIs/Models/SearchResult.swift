@@ -14,9 +14,9 @@ enum MediaType: String, Codable {
     
     var displayName: String {
         switch self {
-        case .movie: return "Movie"
-        case .tv: return "TV Show"
-        case .person: return "Person"
+        case .movie: return "search.media.type.movie".localized()
+        case .tv: return "search.media.type.tv".localized()
+        case .person: return "search.media.type.person".localized()
         }
     }
 }
@@ -96,9 +96,17 @@ struct SearchResponse: Codable {
 
 // Multi-search specific filter
 enum SearchFilter: String, CaseIterable {
-    case all = "All"
-    case movies = "Movies"
-    case tvShows = "TV Shows"
+    case all = "all"
+    case movies = "movies"
+    case tvShows = "tvShows"
+    
+    var localizedTitle: String {
+        switch self {
+        case .all: return "search.filter.all".localized()
+        case .movies: return "search.filter.movie".localized()
+        case .tvShows: return "search.filter.tv".localized()
+        }
+    }
     
     var mediaType: String? {
         switch self {

@@ -61,9 +61,15 @@
 "error.no_data" = "Данные не найдены";
 
 /* Search */
-"search.title" = "Search";
-"search.holder.msg" = "Search movies, TV shows...";
-"search.header" = "Search for Movies & TV Shows";
-"search.desc" = "Find your favorite movies and TV shows";
-"search.empty.prompt" = "No results found";
-"search.retry.prompt" = "Try searching with different keywords";
+"search.title" = "Поиск";
+"search.holder.msg" = "Поиск фильмов, сериалов...";
+"search.header" = "Поиск фильмов и сериалов";
+"search.desc" = "Найдите свои любимые фильмы и сериалы";
+"search.empty.prompt" = "Результаты не найдены";
+"search.retry.prompt" = "Попробуйте поискать с другими ключевыми словами";
+"search.filter.all" = "Все";
+"search.filter.movie" = "Фильмы";
+"search.filter.tv" = "Сериалы";
+"search.media.type.movie" = "Фильм";
+"search.media.type.tv" = "Сериал";
+"search.media.type.person" = "Персона";
