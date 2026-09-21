@@ -13,20 +13,15 @@ struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
     @FocusState private var isSearchFocused: Bool
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @State private var selectedResult: SearchResult?
     
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                // Search Bar
-                searchBar
-                
-                // Filter Chips
-                filterChips
-                
-                // Content
-                content
+        Group {
+            if ResponsiveLayout.isIPad {
+                iPadContent
+            } else {
+                iPhoneContent
             }
-            .navigationTitle("search.title".localized())
         }
     }
     
@@ -97,6 +92,57 @@ struct SearchView: View {
         }
     }
     
+    private var iPadContent: some View {
+        VStack(spacing: 0) {
+            searchBar
+            filterChips
+            content
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationTitle("search.title".localized())
+        .sheet(item: $selectedResult) { result in
+            NavigationStack {
+                if result.mediaType ==  .movie || viewModel.filter == .movies {
+                    MovieDetailsIpad(movieId: result.id, movieTiltle: result.displayTitle)
+                        .navigationTitle(result.displayTitle)
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button("common.done".localized()) {
+                                    selectedResult = nil
+                                }
+                            }
+                        }
+                } else if result.mediaType ==  .tv  || viewModel.filter == .tvShows {
+                    TVShowDetailsIpad(tvShowId: result.id, tvShowName: result.name ?? "")
+                        .navigationTitle(result.displayTitle)
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button("common.done".localized()) {
+                                    selectedResult = nil
+                                }
+                            }
+                        }
+                }
+                
+            }
+            .presentationDetents([.large])
+            .presentationDragIndicator(.visible)
+        }
+    }
+    
+    private var iPhoneContent: some View {
+        NavigationStack {
+            VStack(spacing: 0) {
+                searchBar
+                filterChips
+                content
+            }
+            .navigationTitle("search.title".localized())
+        }
+    }
+    
     // MARK: - Content
     
     @ViewBuilder
@@ -106,7 +152,7 @@ struct SearchView: View {
             recentSearchesView
         } else if viewModel.isLoading && viewModel.results.isEmpty {
             // Loading state
-            loadingView
+            LoadingView(title: "Searching...")
         } else if let error = viewModel.error {
             // Error state
             ErrorView(error: error)
@@ -114,9 +160,11 @@ struct SearchView: View {
             // No results
             noResultsView
         } else {
-            // Results grid
-            iPhoneLayout
-            // resultsGrid
+            if ResponsiveLayout.isIPad {
+                iPadLayout
+            } else {
+                iPhoneLayout
+            }
         }
     }
     
@@ -190,20 +238,6 @@ struct SearchView: View {
         }
     }
     
-    // MARK: - Loading View
-    
-    private var loadingView: some View {
-        VStack {
-            Spacer()
-            ProgressView()
-                .scaleEffect(1.5)
-            Text("Searching...")
-                .foregroundColor(.secondary)
-                .padding(.top, 12)
-            Spacer()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
     
     // MARK: - No Results View
     
@@ -215,7 +249,7 @@ struct SearchView: View {
                 .font(.system(size: 50))
                 .foregroundColor(.secondary.opacity(0.5))
             
-            Text("search.empty_prompt".localized())
+            Text("search.empty.prompt".localized())
                 .font(.headline)
             
             Text("search.retry.prompt".localized())
@@ -236,9 +270,9 @@ struct SearchView: View {
             NavigationLink {
                 if result.mediaType ==  .movie || viewModel.filter == .movies {
                     MovieDetailView(movieId: result.id, movieTiltle: result.title ?? "")
-               } else if result.mediaType ==  .tv  || viewModel.filter == .tvShows {
-                   TvShowDetailView(tvShowId: result.id, tvShowName: result.name ?? "")
-               }
+                } else if result.mediaType ==  .tv  || viewModel.filter == .tvShows {
+                    TvShowDetailView(tvShowId: result.id, tvShowName: result.name ?? "")
+                }
             } label: {
                 SearchResultRow(result: result)
             }
@@ -247,269 +281,26 @@ struct SearchView: View {
     
     // MARK: - Results Grid
     
-    private var resultsGrid: some View {
+    private var iPadLayout: some View {
         GeometryReader { geometry in
             ScrollView {
-                LazyVGrid(columns: makeColumns(for: geometry.size.width),
-                          spacing: 24) {
+                LazyVGrid(
+                    columns: Helper.shared.makeColumns(for: geometry.size.width),
+                    spacing: 24
+                ) {
                     ForEach(viewModel.results) { result in
                         SearchResultCard(result: result)
-                    }
-                }
-                          .padding(.horizontal, 16)
-                          .padding(.top, 8)
-                          .padding(.bottom, 20)
-            }
-        }
-    }
-    
-    private func makeColumns(for width: CGFloat) -> [GridItem] {
-        let minimumCardWidth: CGFloat = 180
-        let spacing: CGFloat = 24
-        
-        let availableWidth = width - 48
-        
-        let numberOfColumns = max(
-            1,
-            Int(
-                (availableWidth + spacing) /
-                (minimumCardWidth + spacing)
-            )
-        )
-        
-        return Array(
-            repeating: GridItem(
-                .flexible(),
-                spacing: spacing
-            ),
-            count: numberOfColumns
-        )
-    }
-}
-
-// MARK: - Supporting Views
-
-struct FilterChip: View {
-    let title: String
-    let icon: String
-    let isSelected: Bool
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            HStack(spacing: 6) {
-                Image(systemName: icon)
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(isSelected ? .black : .primary)
-                
-                Text(title)
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(isSelected ? .black : .primary)
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
-            .background(
-                Capsule()
-                    .fill(isSelected ? Color.yellow : Color(.secondarySystemBackground))
-            )
-            .overlay(
-                Capsule()
-                    .stroke(Color(.separator), lineWidth: isSelected ? 0 : 0.5)
-            )
-        }
-    }
-}
-
-struct RecentSearchRow: View {
-    let search: String
-    let onTap: () -> Void
-    let onDelete: () -> Void
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "clock.arrow.circlepath")
-                .foregroundColor(.secondary)
-                .frame(width: 24)
-            
-            Text(search)
-                .foregroundColor(.primary)
-            
-            Spacer()
-            
-            Button(action: onDelete) {
-                Image(systemName: "xmark")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
-        .contentShape(Rectangle())
-        .onTapGesture(perform: onTap)
-    }
-}
-
-struct SearchResultRow: View {
-    let result: SearchResult
-    
-    var body: some View {
-        HStack {
-            if let url = result.imageURL {
-                KFImage(url)
-                    .resizable()
-                    .placeholder {
-                        ProgressView()
-                    }
-                    .frame(width: 120, height: 180)
-                    .cornerRadius(4)
-            } else {
-                Image(systemName: result.mediaType == .tv ? "tv" : "film")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.gray)
-                    .background(Color(.secondarySystemBackground))
-                    .frame(width: 120, height: 180)
-                    .cornerRadius(4)
-            }
-            
-            VStack(alignment: .leading) {
-                Text(result.displayTitle)
-                    .font(.title2)
-                    .bold()
-                if let year = result.releaseYear {
-                    HStack {
-                        Text("movies.release".localized())
-                            .font(.subheadline)
-                        Text(year)
-                            .font(.subheadline)
-                    }
-                }
-                if let rating = result.voteAverage, rating > 0 {
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
-                        Text(String(format: "%.1f", result.voteAverage ?? 0))
-                    }
-                }
-                
-                // Media Type Badge
-                if let mediaType = result.mediaType {
-                    Text(mediaType.displayName)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(
-                            Capsule()
-                                .fill(result.mediaType == .movie ? Color.blue : Color.purple)
-                        )
-                        .padding(8)
-                }
-            }
-        }
-    }
-}
-
-
-struct SearchResultCard: View {
-    let result: SearchResult
-    @State private var isPressed = false
-    
-    var body: some View {
-        NavigationLink(destination: destinationView) {
-            VStack(alignment: .leading, spacing: 6) {
-                // Image
-                ZStack(alignment: .topTrailing) {
-                    if let url = result.imageURL {
-                        KFImage(url)
-                            .resizable()
-                            .placeholder {
-                                Color.gray.opacity(0.3)
-                                    .overlay(ProgressView())
-                            }
-                            .aspectRatio(contentMode: .fill)
-                            .frame(height: ResponsiveLayout.posterSize.height)
-                            .frame(maxWidth: .infinity)
-                            .clipped()
-                            .cornerRadius(12)
-                    } else {
-                        Image(systemName: result.mediaType == .tv ? "tv" : "film")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: ResponsiveLayout.posterSize.height)
-                            .foregroundColor(.gray)
-                            .background(Color(.secondarySystemBackground))
-                            .cornerRadius(12)
-                    }
-                    
-                    // Media Type Badge
-                    Text(result.mediaType?.displayName ?? "")
-                        .font(.caption2)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(
-                            Capsule()
-                                .fill(result.mediaType == .movie ? Color.blue : Color.purple)
-                        )
-                        .padding(8)
-                }
-                
-                // Title
-                Text(result.displayTitle)
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.leading)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.horizontal, 4)
-                
-                // Rating and Year
-                HStack(spacing: 6) {
-                    if let rating = result.voteAverage, rating > 0 {
-                        HStack(spacing: 2) {
-                            Image(systemName: "star.fill")
-                                .font(.caption2)
-                                .foregroundColor(.yellow)
-                            
-                            Text(String(format: "%.1f", rating))
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                        .frame(maxWidth: .infinity)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            selectedResult = result
                         }
                     }
-                    
-                    Spacer()
-                    
-                    if let year = result.releaseYear {
-                        Text(year)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
                 }
-                .padding(.horizontal, 4)
-                .padding(.bottom, 4)
+                .padding(.horizontal, 16)
+                .padding(.top, 8)
+                .padding(.bottom, 20)
             }
-            .background(Color(.systemBackground))
-            .cornerRadius(12)
-            .shadow(color: Color.black.opacity(0.08), radius: 4, x: 0, y: 2)
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-    
-    @ViewBuilder
-    private var destinationView: some View {
-        switch result.mediaType {
-        case .movie:
-            MovieDetailByIdView(movieId: result.id)
-        case .tv:
-            TVShowDetailByIdView(showId: result.id)
-        case .person:
-            EmptyView()
-        case .none:
-            EmptyView()
         }
     }
 }
-

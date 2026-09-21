@@ -10,28 +10,29 @@ import Kingfisher
 
 struct TVShowDetailsIpad: View {
     
-    let tvShow: TvShow
+    let tvShowId: Int
+    let tvShowName: String
     @StateObject private var viewModel = TvShowDetailViewModel()
     
     var body: some View {
         ScrollView {
             if viewModel.isLoading {
-                ProgressView()
+                LoadingView(title: "Loading...")
             } else if let error = viewModel.error {
                 ErrorView(error: error)
             } else if let tvShowDetail = viewModel.tvShowDetail {
                 tvShowContent(for: tvShowDetail)
             }
         }
-        .navigationTitle(tvShow.name)
+        .navigationTitle(tvShowName)
         .navigationBarTitleDisplayMode(.inline)
         .frame(maxWidth: .infinity)
         .refreshable {
-            viewModel.fetchTVShowDetails(tvShowId: tvShow.id)
+            viewModel.fetchTVShowDetails(tvShowId: tvShowId)
         }
         .onAppear {
             if viewModel.tvShowDetail == nil {
-                viewModel.fetchTVShowDetails(tvShowId: tvShow.id)
+                viewModel.fetchTVShowDetails(tvShowId: tvShowId)
             }
         }
     }

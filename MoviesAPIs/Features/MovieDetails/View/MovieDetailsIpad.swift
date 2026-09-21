@@ -20,7 +20,7 @@ struct MovieDetailsIpad: View {
     var body: some View {
         ScrollView {
             if viewModel.isLoading {
-                ProgressView()
+                LoadingView(title: "Loading...")
             } else if let error = viewModel.error {
                 ErrorView(error: error)
             } else if let movieDetail = viewModel.movieDetail {

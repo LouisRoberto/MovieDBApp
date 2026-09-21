@@ -82,8 +82,7 @@ struct MovieListView: View {
     @ViewBuilder
     private var content: some View {
         if viewModel.isLoading {
-            ProgressView()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            LoadingView(title: "Loading...")
 
         } else if let error = viewModel.error {
             ErrorView(error: error)
@@ -121,7 +120,7 @@ struct MovieListView: View {
         GeometryReader { geometry in
             ScrollView {
                 LazyVGrid(
-                    columns: makeColumns(for: geometry.size.width),
+                    columns: Helper.shared.makeColumns(for: geometry.size.width),
                     spacing: 24
                 ) {
                     ForEach(viewModel.results) { movie in
@@ -148,29 +147,6 @@ struct MovieListView: View {
         .frame(
             maxWidth: .infinity,
             maxHeight: .infinity
-        )
-    }
-
-    private func makeColumns(for width: CGFloat) -> [GridItem] {
-        let minimumCardWidth: CGFloat = 180
-        let spacing: CGFloat = 24
-
-        let availableWidth = width - 48
-
-        let numberOfColumns = max(
-            1,
-            Int(
-                (availableWidth + spacing) /
-                (minimumCardWidth + spacing)
-            )
-        )
-
-        return Array(
-            repeating: GridItem(
-                .flexible(),
-                spacing: spacing
-            ),
-            count: numberOfColumns
         )
     }
 }

@@ -26,4 +26,24 @@ final class Helper {
         guard let url = URL(string: urlString) else { return }
         UIApplication.shared.open(url)
     }
+    
+    func makeColumns(for width: CGFloat) -> [GridItem] {
+        let minimumCardWidth: CGFloat = 180
+        let spacing: CGFloat = 24
+        
+        let availableWidth = width - 48
+        
+        let numberOfColumns = max(
+            1,
+            Int(
+                (availableWidth + spacing) /
+                (minimumCardWidth + spacing)
+            )
+        )
+        
+        return Array(
+            repeating: GridItem(.flexible(), spacing: spacing),
+            count: numberOfColumns
+        )
+    }
 }

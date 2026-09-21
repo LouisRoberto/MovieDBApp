@@ -20,9 +20,7 @@ struct MovieVideosView: View {
         NavigationView {
             VStack(alignment: .leading, spacing: 12) {
                 if viewModel.isLoading {
-                    ProgressView()
-                        .padding(.leading, 8)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    LoadingView(title: "Loading...")
                 }
                 if viewModel.videos.isEmpty && !viewModel.isLoading {
                     Text("No trailers available")
