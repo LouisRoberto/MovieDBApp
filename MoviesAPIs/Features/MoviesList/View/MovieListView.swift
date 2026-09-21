@@ -82,7 +82,7 @@ struct MovieListView: View {
     @ViewBuilder
     private var content: some View {
         if viewModel.isLoading {
-            LoadingView(title: "Loading...")
+            LoadingView(title: "common.loading".localized())
 
         } else if let error = viewModel.error {
             ErrorView(error: error)
@@ -148,95 +148,5 @@ struct MovieListView: View {
             maxWidth: .infinity,
             maxHeight: .infinity
         )
-    }
-}
-
-struct MovieRow: View {
-    let movie: Movie
-    
-    var body: some View {
-        HStack {
-            if let url = movie.fullPosterURL {
-                KFImage(url)
-                    .resizable()
-                    .placeholder {
-                        ProgressView()
-                    }
-                    .frame(width: 120, height: 180)
-                    .cornerRadius(4)
-            }
-            
-            VStack(alignment: .leading) {
-                Text(movie.title)
-                    .font(.title2)
-                    .bold()
-                HStack {
-                    Text("movies.release".localized())
-                        .font(.subheadline)
-                    Text(movie.releaseDate.prefix(4))
-                        .font(.subheadline)
-                }
-                HStack {
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
-                    Text(String(format: "%.1f", movie.voteAverage))
-                }
-            }
-        }
-    }
-}
-
-struct MovieGridItem: View {
-    let movie: Movie
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            // Movie Poster
-            if let url = movie.fullPosterURL {
-                KFImage(url)
-                    .resizable()
-                    .placeholder {
-                        ProgressView()
-                            .frame(height: ResponsiveLayout.posterSize.height)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: ResponsiveLayout.posterSize.height)
-                    .cornerRadius(12)
-                
-            } else {
-                Image(systemName: "film")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: ResponsiveLayout.posterSize.height)
-                    .foregroundColor(.gray)
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(12)
-            }
-            
-            // Movie Title
-            Text(movie.title)
-                .font(.title2)
-                .bold()
-                .lineLimit(1)
-                .padding(.horizontal, 4)
-            
-            // Rating
-            HStack(spacing: 4) {
-                Image(systemName: "star.fill")
-                    .imageScale(.small)
-                    .foregroundColor(.yellow)
-                
-                Text(String(format: "%.1f", movie.voteAverage))
-                    .font(.system(size: 14, weight: .regular))
-                    .foregroundColor(.secondary)
-            }
-            .padding(.horizontal, 4)
-            .padding(.bottom, 4)
-        }
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-        .frame(maxWidth: ResponsiveLayout.isIPad ? .infinity : nil)
     }
 }

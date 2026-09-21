@@ -152,7 +152,7 @@ struct SearchView: View {
             recentSearchesView
         } else if viewModel.isLoading && viewModel.results.isEmpty {
             // Loading state
-            LoadingView(title: "Searching...")
+            LoadingView(title: "search.loading.msg".localized())
         } else if let error = viewModel.error {
             // Error state
             ErrorView(error: error)

@@ -20,7 +20,7 @@ struct MovieVideosView: View {
         NavigationView {
             VStack(alignment: .leading, spacing: 12) {
                 if viewModel.isLoading {
-                    LoadingView(title: "Loading...")
+                    LoadingView(title: "common.loading".localized())
                 }
                 if viewModel.videos.isEmpty && !viewModel.isLoading {
                     Text("No trailers available")

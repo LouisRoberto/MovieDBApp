@@ -20,7 +20,7 @@ struct MovieDetailsIpad: View {
     var body: some View {
         ScrollView {
             if viewModel.isLoading {
-                LoadingView(title: "Loading...")
+                LoadingView(title: "common.loading".localized())
             } else if let error = viewModel.error {
                 ErrorView(error: error)
             } else if let movieDetail = viewModel.movieDetail {
@@ -88,6 +88,9 @@ struct posterAndTitleSection:  View {
                 if let url = movie.fullPosterURL {
                     KFImage(url)
                         .resizable()
+                        .placeholder {
+                            ProgressView()
+                        }
                         .aspectRatio(contentMode: .fill)
                         .frame(width: ResponsiveLayout.posterSize.width,
                                height: ResponsiveLayout.posterSize.height)

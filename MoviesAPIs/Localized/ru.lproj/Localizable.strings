@@ -23,6 +23,7 @@
 "common.retry" = "Пожалуйста, попробуйте снова";
 "common.no_internet" = "Проверьте подключение к сети и попробуйте снова.";
 "common.done" = "Готово";
+"common.loading" = "Загрузка...";
 
 /* Movies */
 "movies.title" = "Фильмы";
@@ -73,3 +74,4 @@
 "search.media.type.movie" = "Фильм";
 "search.media.type.tv" = "Сериал";
 "search.media.type.person" = "Персона";
+"search.loading.msg" = "Поиск...";

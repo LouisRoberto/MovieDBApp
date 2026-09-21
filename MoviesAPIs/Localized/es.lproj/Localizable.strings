@@ -23,6 +23,7 @@
 "common.retry" = "Por favor, inténtalo de nuevo";
 "common.no_internet" = "Verifica tu conexión e inténtalo.";
 "common.done" = "Hecho";
+"common.loading" = "Cargando...";
 
 /* Movies */
 "movies.title" = "Películas";
@@ -73,3 +74,4 @@
 "search.media.type.movie" = "Película";
 "search.media.type.tv" = "Serie de TV";
 "search.media.type.person" = "Persona";
+"search.loading.msg" = "Buscando...";

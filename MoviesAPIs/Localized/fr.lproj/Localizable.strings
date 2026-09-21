@@ -25,6 +25,7 @@
 "common.retry" = "Merci de réessayer encore une fois";
 "common.no_internet" = "Veuillez vérifier vos paramètres réseau et réessayer.";
 "common.done" = "Terminé";
+"common.loading" = "Chargement...";
 
 /* Movies */
 "movies.title" = "Films";
@@ -75,3 +76,4 @@
 "search.media.type.movie" = "Film";
 "search.media.type.tv" = "Série TV";
 "search.media.type.person" = "Personne";
+"search.loading.msg" = "Recherche en cours...";

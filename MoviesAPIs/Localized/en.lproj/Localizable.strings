@@ -25,6 +25,7 @@
 "common.retry" = "Please retry again";
 "common.no_internet" = "Please check your network settings and try again.";
 "common.done" = "Done";
+"common.loading" = "Loading...";
 
 /* Movies */
 "movies.title" = "Movies";
@@ -75,3 +76,4 @@
 "search.media.type.movie" = "Movie";
 "search.media.type.tv" = "TV Show";
 "search.media.type.person" = "Person";
+"search.loading.msg" = "Searching...";

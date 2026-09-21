@@ -16,7 +16,7 @@ struct TvShowDetailView: View {
     var body: some View {
         ScrollView {
             if viewModel.isLoading {
-                LoadingView(title: "Loading...")
+                LoadingView(title: "common.loading".localized())
             } else if let error = viewModel.error {
                 ErrorView(error: error)
             } else if let tvShowDetail = viewModel.tvShowDetail {
@@ -79,6 +79,9 @@ struct headerSectionTV: View {
             if let url = tvShowDetail.fullPosterURL {
                 KFImage(url)
                     .resizable()
+                    .placeholder {
+                        ProgressView()
+                    }
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 140, height: 210)
                     .cornerRadius(8)
