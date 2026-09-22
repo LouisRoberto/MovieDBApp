@@ -78,6 +78,11 @@
 
 /* Person */
 "person.biography" = "Biografia";
-"person.department" = "Conosciuto per: ";
+"person.department" = "Conosciuto Per: ";
+"person.popularity" = "Credito noto: ";
+"person.gender" = "Genere: ";
 "person.birthday" = "Compleanno: ";
-"person.Birth.place" = "Luogo di nascita: ";
+"person.Birth.place" = "Luogo di Nascita: ";
+"person.gender.male" = "Uomo";
+"person.gender.female" = "Donna";
+"person.gender.nonbinary" = "Non binario";

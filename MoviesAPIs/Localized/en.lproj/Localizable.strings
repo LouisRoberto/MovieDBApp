@@ -80,6 +80,11 @@
 
 /* Person */
 "person.biography" = "Biography";
-"person.department" = "Known for: ";
+"person.department" = "Known For: ";
+"person.popularity" = "Known Credit: ";
+"person.gender" = "Gender: ";
 "person.birthday" = "Birthday: ";
-"person.Birth.place" = "Place of birth: ";
+"person.Birth.place" = "Place of Birth: ";
+"person.gender.male" = "Male";
+"person.gender.female" = "Female";
+"person.gender.nonbinary" = "Non-binary";

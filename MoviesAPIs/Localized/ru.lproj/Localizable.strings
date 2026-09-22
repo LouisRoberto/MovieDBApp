@@ -79,5 +79,10 @@
 /* Person */
 "person.biography" = "Биография";
 "person.department" = "Известен по: ";
+"person.popularity" = "Известный кредит: ";
+"person.gender" = "Пол: ";
 "person.birthday" = "День рождения: ";
-"person.Birth.place" = "Место рождения: ";
+"person.Birth.place" = "Место Pождения: ";
+"person.gender.male" = "Мужской";
+"person.gender.female" = "Женский";
+"person.gender.nonbinary" = "Небинарный";

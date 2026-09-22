@@ -17,9 +17,10 @@ struct PersonDetail: Codable {
     let knownFor: String
     let placeOfBirth: String
     let homepage: String?
+    let gender: Gender
     
     enum CodingKeys: String, CodingKey {
-        case id, name, biography, birthday, popularity, homepage
+        case id, name, biography, birthday, popularity, homepage, gender
         case profilePath = "profile_path"
         case knownFor = "known_for_department"
         case placeOfBirth = "place_of_birth"
@@ -31,5 +32,24 @@ struct PersonDetail: Codable {
         }
         return nil
     }
-    
+}
+
+enum Gender: Int, Codable {
+    case notSet = 0
+    case female = 1
+    case male = 2
+    case nonBinary = 3
+
+    var displayName: String {
+        switch self {
+        case .notSet:
+            return "Not specified"
+        case .female:
+            return "person.gender.female".localized()
+        case .male:
+            return "person.gender.male".localized()
+        case .nonBinary:
+            return "person.gender.nonbinary".localized()
+        }
+    }
 }

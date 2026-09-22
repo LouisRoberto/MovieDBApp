@@ -93,6 +93,14 @@ struct headerSectionPerson: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
+                Text("\("person.popularity".localized()) \(String(format: "%.1f", personDetail.popularity))")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                Text("\("person.gender".localized()) \(personDetail.gender.displayName)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
                 Text("\("person.birthday".localized()) \(personDetail.birthday)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
