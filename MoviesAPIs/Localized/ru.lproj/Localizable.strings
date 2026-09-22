@@ -75,3 +75,9 @@
 "search.media.type.tv" = "Сериал";
 "search.media.type.person" = "Персона";
 "search.loading.msg" = "Поиск...";
+
+/* Person */
+"person.biography" = "Биография";
+"person.department" = "Известен по: ";
+"person.birthday" = "День рождения: ";
+"person.Birth.place" = "Место рождения: ";

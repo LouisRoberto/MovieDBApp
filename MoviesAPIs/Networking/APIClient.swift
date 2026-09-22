@@ -16,6 +16,7 @@ protocol APIClientProtocol {
     func fetchTvShowDetail(tvShowId: Int) async throws -> TvShowDetail
     
     func search(query: String, filter: SearchFilter, page: Int) async throws -> SearchResponse
+    func fetchPersonDetail(personId: Int) async throws -> PersonDetail
 }
 
 class APIClient: APIClientProtocol {
@@ -85,5 +86,17 @@ class APIClient: APIClientProtocol {
         let url = MovieDBAPI.buildURL(url: urlString, additionalQueryItems: searchQueryItems)!
         let (data, _) = try await session.data(from: url)
         return try JSONDecoder().decode(SearchResponse.self, from: data)
+    }
+    
+    func fetchPersonDetail(personId: Int) async throws -> PersonDetail {
+        let cacheKey = NSString(string: "person\(personId)")
+        if let cachedData = cache.object(forKey: cacheKey) as Data? {
+            return try JSONDecoder().decode(PersonDetail.self, from: cachedData)
+        }
+        
+        let urlString = "\(MovieDBAPI.personDetailsEndpoint)\(personId)"
+        let url = MovieDBAPI.buildURL(url: urlString)!
+        let (data, _) = try await session.data(from: url)
+        return try JSONDecoder().decode(PersonDetail.self, from: data)
     }
 }

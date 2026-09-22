@@ -77,3 +77,9 @@
 "search.media.type.tv" = "TV Show";
 "search.media.type.person" = "Person";
 "search.loading.msg" = "Searching...";
+
+/* Person */
+"person.biography" = "Biography";
+"person.department" = "Known for: ";
+"person.birthday" = "Birthday: ";
+"person.Birth.place" = "Place of birth: ";

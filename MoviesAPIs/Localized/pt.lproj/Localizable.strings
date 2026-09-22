@@ -75,3 +75,9 @@
 "search.media.type.tv" = "Série de TV";
 "search.media.type.person" = "Pessoa";
 "search.loading.msg" = "Pesquisando...";
+
+/* Person */
+"person.biography" = "Biografia";
+"person.department" = "Conhecido por: ";
+"person.birthday" = "Aniversário: ";
+"person.Birth.place" = "Local de nascimento: ";

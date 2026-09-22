@@ -14,6 +14,7 @@ struct MovieDBAPI {
     static let BASE_URL = "https://api.themoviedb.org/3"
     static let movieDetailsEndpoint : String = BASE_URL + "/movie/"
     static let tvShowDetailsEndpoint : String = BASE_URL + "/tv/"
+    static let personDetailsEndpoint : String = BASE_URL + "/person/"
     
     private static var languageQueryItem: URLQueryItem {
         URLQueryItem(name: "language", value: LanguageManager.shared.languageCode)

@@ -124,6 +124,17 @@ struct SearchView: View {
                                 }
                             }
                         }
+                } else if result.mediaType == .person {
+                    PersonDetailView(personId: result.id, personName: result.name ?? "")
+                        .navigationTitle(result.displayTitle)
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button("common.done".localized()) {
+                                    selectedResult = nil
+                                }
+                            }
+                        }
                 }
                 
             }
@@ -272,6 +283,8 @@ struct SearchView: View {
                     MovieDetailView(movieId: result.id, movieTiltle: result.title ?? "")
                 } else if result.mediaType ==  .tv  || viewModel.filter == .tvShows {
                     TvShowDetailView(tvShowId: result.id, tvShowName: result.name ?? "")
+                } else if result.mediaType ==  .person {
+                    PersonDetailView(personId: result.id, personName: result.name ?? "")
                 }
             } label: {
                 SearchResultRow(result: result)
@@ -290,11 +303,11 @@ struct SearchView: View {
                 ) {
                     ForEach(viewModel.results) { result in
                         SearchResultCard(result: result)
-                        .frame(maxWidth: .infinity)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            selectedResult = result
-                        }
+                            .frame(maxWidth: .infinity)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                selectedResult = result
+                            }
                     }
                 }
                 .padding(.horizontal, 16)

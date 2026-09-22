@@ -73,3 +73,9 @@
 "search.media.type.movie" = "Film";
 "search.media.type.tv" = "TV-Serie";
 "search.media.type.person" = "Person";
+
+/* Person */
+"person.biography" = "Biografie";
+"person.department" = "Bekannt für: ";
+"person.birthday" = "Geburtstag: ";
+"person.Birth.place" = "Geburtsort: ";
