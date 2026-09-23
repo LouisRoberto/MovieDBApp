@@ -86,3 +86,5 @@
 "person.gender.male" = "Мужской";
 "person.gender.female" = "Женский";
 "person.gender.nonbinary" = "Небинарный";
+"person.gender.none" = "Не указано";
+"person.age" = "лет";

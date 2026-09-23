@@ -46,7 +46,9 @@ struct PersonDetailView: View {
                 headerSectionPerson(personDetail: person)
                 
                 // Person Overview
-                 biographySection(person: person)
+                if person.biography.count > 0 {
+                    biographySection(person: person)
+                }
                 
                 if let homepage = person.homepage, !homepage.isEmpty, Helper.shared.isValidURL(homepage) {
                     homepageLink(homePageLink: homepage)
@@ -101,13 +103,17 @@ struct headerSectionPerson: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
-                Text("\("person.birthday".localized()) \(personDetail.birthday)")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+                if personDetail.birthdayDisplayText.count > 0 {
+                    Text("\("person.birthday".localized()) \(personDetail.birthdayDisplayText)")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
                 
-                Text("\("person.Birth.place".localized()) \(personDetail.placeOfBirth)")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+                if let placeOfBirth = personDetail.placeOfBirth {
+                    Text("\("person.Birth.place".localized()) \(placeOfBirth)")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
                 
             }
             

@@ -14,7 +14,7 @@ final class LanguageManager {
     
     var currentLanguage: String {
         // Get the device language or default to English
-        let deviceLanguage = Locale.current.languageCode ?? "en"
+        let deviceLanguage = Locale.current.language.languageCode?.identifier ?? "en"
         // Check if the device language is supported by TMDB
         return supportedLanguages.contains(deviceLanguage) ? deviceLanguage : "en"
     }
@@ -29,6 +29,6 @@ final class LanguageManager {
     
     // ISO 3166-1 region code (optional, can improve results)
     var regionCode: String {
-        return Locale.current.regionCode ?? "US"
+        return Locale.current.region?.identifier ?? "US"
     }
 }

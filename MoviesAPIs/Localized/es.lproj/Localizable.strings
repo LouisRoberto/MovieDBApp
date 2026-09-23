@@ -86,3 +86,5 @@
 "person.gender.male" = "Hombre";
 "person.gender.female" = "Mujer";
 "person.gender.nonbinary" = "No binario";
+"person.gender.none" = "No especificado";
+"person.age" = "años";

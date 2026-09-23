@@ -37,7 +37,7 @@ struct MainTabView: View {
                 
                 SearchView()
                     .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
+                        Label("search.title".localized(), systemImage: "magnifyingglass")
                     }
                     .tag(2)
             }
